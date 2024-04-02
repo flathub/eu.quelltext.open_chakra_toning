@@ -39,5 +39,5 @@ modules:
       - ./inside.sh
     sources:
       - type: archive
-        url: https://github.com/niccokunzmann/open_chakra_toning/releases/download/v1.0.0/Open-Chakra-Toning-linux-x64.zip
-        sha256: 73e4753ec47c4c48af04a7be8ff570dcfff24594e39e0cf25e1217c1d4e677dd
+        url: https://github.com/niccokunzmann/open_chakra_toning/releases/download/v1.0.2/Open-Chakra-Toning-linux-x64.zip
+        sha256: 46c031af7abe59040b80f3d1feb18425e709d886c45124e542bfe4fe2596d111

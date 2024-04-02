@@ -1,0 +1,29 @@
+#
+# Check for Updates
+#
+# This is influenced by https://github.com/flathub-infra/flatpak-external-data-checker
+#
+
+name: Check for updates
+on:
+  schedule: # for scheduling to work this file must be in the default branch
+  - cron: "0 3 * * *" # run 3am
+  workflow_dispatch: # can be manually dispatched under GitHub's "Actions" tab
+
+jobs:
+  check-for-updates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Submit a PR with a new release if possible"
+        run: |
+            ./scripts/update-manifest.sh
+            # check if we are on the update branch
+            if [ "`git rev-parse --abbrev-ref HEAD`" == "update" ]; then
+                # create a pull request
+                # see https://stackoverflow.com/a/73340290/1320237
+                gh pr create -B master -H update --fill --assignee niccokunzmann
+            fi
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
